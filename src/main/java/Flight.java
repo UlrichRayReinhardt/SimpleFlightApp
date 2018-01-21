@@ -1,3 +1,4 @@
+import java.lang.reflect.Field;
 
 public class Flight {
     private String id;
@@ -58,4 +59,18 @@ public class Flight {
                 ", ticketPrice=" + ticketPrice +
                 '}';
     }
-}
+
+
+    public boolean predicate(String fieldname, String prop) {
+        Field field;
+        try {
+            field = this.getClass().getDeclaredField(fieldname);
+            field.setAccessible(true);
+            Object value = field.get(this);
+            if (value.equals(prop))
+                return true;
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }}
