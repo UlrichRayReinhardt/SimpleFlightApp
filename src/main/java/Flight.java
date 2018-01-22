@@ -1,4 +1,3 @@
-import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class Flight {
@@ -38,7 +37,7 @@ public class Flight {
         return ticketPrice;
     }
 
-    public Flight(FlightBuilder builder){
+    public Flight(FlightBuilder builder) {
         this.id = builder.getId();
         this.company = builder.getCompany();
         this.departure = builder.getDeparture();
@@ -47,7 +46,6 @@ public class Flight {
         this.distance = builder.getDistance();
         this.ticketPrice = builder.getTicketPrice();
     }
-
 
 
     @Override
@@ -63,6 +61,14 @@ public class Flight {
         return Objects.equals(id, flight.id)
                 && Objects.equals(company, flight.company);
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode() +
+                company.hashCode() + airPlane.hashCode();
+
+    }
+
     /*public boolean predicate(String fieldname, String prop) {
         Field field;
         try {

@@ -40,12 +40,6 @@ public class Suite extends HashSet<Flight> {
         if (flight != null && !this.contains(flight))
             this.add(flight);
     }
-        public boolean contains(Flight o) {
-        for (Flight flight : this)
-            if (o.equals(flight))
-                return true;
-        return false;
-    }
 
     public Suite listSortedBy(String... propertyName) {
         ComparatorChain chain = new ComparatorChain();
@@ -57,7 +51,7 @@ public class Suite extends HashSet<Flight> {
     }
 
     public List<Flight> getAllByCompany(String prop) {
-       return this.stream().filter(flight -> flight.getCompany() == prop).collect(Collectors.toList());
+        return this.stream().filter(flight -> flight.getCompany() == prop).collect(Collectors.toList());
     }
 
     public List<Flight> getAllByDestination(String prop) {
@@ -91,7 +85,8 @@ public class Suite extends HashSet<Flight> {
 
     public Flight getFlight(String flight_id) {
         return stream().filter(flight -> flight.getId() == flight_id).findFirst().orElse(null);
-    }}
+    }
+}
 
 
 

@@ -49,7 +49,7 @@ public class FlightBuilder {
     public Flight build() {
         try {
             if (departure.equals(destination))
-                throw new Exception("departure and destination couldn't be the same. Flight is not created");
+                throw new Exception("departure and destination couldn't be the same. Flight " + id + " is not created");
             return new Flight(this);
         } catch (Exception e) {
             System.err.println(e.getMessage());
