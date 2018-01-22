@@ -1,4 +1,5 @@
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 public class Flight {
     private String id;
@@ -37,31 +38,32 @@ public class Flight {
         return ticketPrice;
     }
 
-    public Flight(String id, Company company, String departure, String destination, AirPlane airPlane, double distance, double ticketPrice) {
-        this.id = id;
-        this.company = company.name();
-        this.departure = departure;
-        this.destination = destination;
-        this.airPlane = airPlane.name();
-        this.distance = distance;
-        this.ticketPrice = ticketPrice;
+    public Flight(FlightBuilder builder){
+        this.id = builder.getId();
+        this.company = builder.getCompany();
+        this.departure = builder.getDeparture();
+        this.destination = builder.getDestination();
+        this.airPlane = builder.getAirPlane();
+        this.distance = builder.getDistance();
+        this.ticketPrice = builder.getTicketPrice();
     }
+
+
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "id='" + id + '\'' +
-                ", company=" + company +
-                ", departure='" + departure + '\'' +
-                ", destination='" + destination + '\'' +
-                ", airPlane=" + airPlane +
-                ", distance=" + distance +
-                ", ticketPrice=" + ticketPrice +
-                '}';
+        return id + " | " + company +
+                " | " + departure + " -> " + destination +
+                " | " + airPlane +
+                " | " + distance + "km | " +
+                ticketPrice + "$";
     }
 
-
-    public boolean predicate(String fieldname, String prop) {
+    public boolean equals(Flight flight) {
+        return Objects.equals(id, flight.id)
+                && Objects.equals(company, flight.company);
+    }
+    /*public boolean predicate(String fieldname, String prop) {
         Field field;
         try {
             field = this.getClass().getDeclaredField(fieldname);
@@ -73,4 +75,5 @@ public class Flight {
             e.printStackTrace();
         }
         return false;
-    }}
+    }*/
+}
